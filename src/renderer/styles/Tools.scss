@@ -1,0 +1,88 @@
+@import './variables.scss';
+
+.tools__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tools__section {
+  width: 49%;
+  border-radius: 8px;
+  height: calc(100vh - 200px);
+  background: $bgLightest;
+  box-sizing: border-box;
+  padding: 16px;
+
+  h2 {
+    margin: 0;
+  }
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.tools__container {
+  margin-top: 16px;
+  height: calc(100vh - 280px);
+  display: flex;
+
+  h3 {
+    color: $neutral;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+}
+
+.list__select {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  overflow: auto;
+}
+
+.list__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 75%;
+  height: 100%;
+  background: darken($bgLight, 5%);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+.list__item {
+  min-height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: $neutral;
+  cursor: pointer;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+
+  &.selected {
+    background: darken($bgLight, 5%);
+    color: #fff;
+  }
+
+  &.selected-create {
+    background: darken($bgLight, 5%);
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+.accounts__textbox__wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 450px);
+}
+
+.list__item-create {
+  color: $accent;
+  font-weight: bold;
+}

@@ -1,0 +1,198 @@
+@import './variables';
+
+.sites__wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.site__wrapper {
+  width: 23%;
+  height: 144px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $bgLightest;
+  transition: ease 0.3s;
+  cursor: pointer;
+
+  &.disabled {
+    cursor: default;
+  }
+}
+
+.shopify:hover {
+  box-shadow: inset 0 0 0 1px #00f88b;
+}
+
+.shopify--active {
+  box-shadow: inset 0 0 0 1px #00f88b;
+}
+
+.supreme:hover {
+  box-shadow: inset 0 0 0 1px #ff3c5d;
+}
+
+.supreme--active {
+  box-shadow: inset 0 0 0 1px #ff3c5d;
+}
+
+.yeezy:hover {
+  box-shadow: inset 0 0 0 1px rgb(253, 247, 239);
+}
+
+.yeezy--active {
+  box-shadow: inset 0 0 0 1px rgb(253, 247, 239);
+}
+
+.snipes:hover {
+  box-shadow: inset 0 0 0 1px #f3721d;
+}
+
+.snipes--active {
+  box-shadow: inset 0 0 0 1px #f3721d;
+}
+
+.site__wrapper--active {
+  background: $bgLight;
+}
+
+.createtask-form__wrapper {
+  @include flexColumnSpaceBetween();
+  width: 100%;
+  height: 100%;
+}
+
+.createtask-inputs__wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-height: calc(100vh - 236px);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.createprofile-inputs__wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-height: calc(100vh - 228px);
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.createtask-inputs__section {
+  width: 32%;
+  height: 100%;
+  display: inline-block;
+
+  h3:nth-of-type(2) {
+    margin-top: 19px;
+  }
+
+  h3 {
+    margin: 0;
+    margin-right: 8px;
+  }
+}
+
+.ct-buttons__wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.card__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 296px;
+  height: 168px;
+  background: $purpleGradient;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  font-family: $card-font;
+  font-weight: bold;
+
+  &.Mastercard {
+    background: $orangeGradient;
+  }
+
+  &.Visa {
+    background: $purpleGradient;
+  }
+
+  &.Discover {
+    background: $lightOrangeGradient;
+  }
+
+  &.Amex {
+    background: $blueGradient;
+  }
+
+  &.JCB {
+    background: $jcbGradient;
+  }
+
+  &.Diners {
+    background: $darkBlueGradient;
+  }
+
+  .card--top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card--mid {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+    margin-top: 16px;
+  }
+
+  .card-chip {
+    height: 36px;
+  }
+
+  .card-icon {
+    height: 26px;
+  }
+
+  .card--bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .card__info {
+    display: flex;
+    flex-direction: column;
+
+    .card__text--small {
+      font-size: 12px;
+    }
+
+    .card__text {
+      font-size: 16px;
+    }
+  }
+}

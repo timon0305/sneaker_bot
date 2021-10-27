@@ -1,0 +1,245 @@
+.animation__wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 24px;
+  height: 24px;
+
+  &.small {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.task-animation {
+  width: 100%;
+  height: 100%;
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url('./animated-icons/tasks-ns.svg');
+  left: 0;
+  top: 0;
+}
+
+.tools-animation {
+  width: 100%;
+  height: 100%;
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url('./animated-icons/tools-ns.svg');
+  left: 0;
+  top: 0;
+}
+
+.tools-animation:hover {
+  width: 1200%;
+  background-image: url('./animated-icons/tools.svg');
+  animation-name: animated;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(11);
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+.task-animation:hover {
+  width: 1200%;
+  background-image: url('./animated-icons/tasks.svg');
+  animation-name: animated;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(11);
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+.analytics-animation {
+  width: 100%;
+  height: 100%;
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url('./animated-icons/analytics-ns.svg');
+  left: 0;
+  top: 0;
+}
+
+.analytics-animation:hover {
+  width: 1200%;
+  background-image: url('./animated-icons/analytics.svg');
+  animation-name: animated;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(11);
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+.settings-animation {
+  width: 100%;
+  height: 100%;
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url('./animated-icons/settings-ns.svg');
+  left: 0;
+  top: 0;
+}
+
+.harvesters-animation {
+  width: 70%;
+  height: 70%;
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url('./animated-icons/captcha.svg');
+  left: 20%;
+  top: 20%;
+}
+
+.settings-animation:hover {
+  width: 1200%;
+  background-image: url('./animated-icons/settings.svg');
+  animation-name: animated;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(11);
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+.settings-animation--active {
+  background-image: url('./animated-icons/settings-s.svg');
+}
+
+.proxies-animation {
+  width: 100%;
+  height: 100%;
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url('./animated-icons/proxies-ns.svg');
+  left: 0;
+  top: 0;
+}
+
+.proxies-animation:hover {
+  width: 600%;
+  background-image: url('./animated-icons/proxies.svg');
+  animation-name: animatedShort;
+  animation-duration: 1s;
+  animation-timing-function: steps(5);
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+.proxies-animation--active {
+  background-image: url('./animated-icons/proxies-s.svg');
+}
+
+.profiles-animation {
+  width: 100%;
+  height: 100%;
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url('./animated-icons/profiles-ns.svg');
+  left: 0;
+  top: 0;
+}
+
+.profiles-animation:hover {
+  width: 1200%;
+  background-image: url('./animated-icons/profiles.svg');
+  animation-name: animated;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(11);
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+.profiles-animation--active {
+  background-image: url('./animated-icons/profiles-s.svg');
+}
+
+.deactivate-animation {
+  width: 100%;
+  height: 100%;
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url('./animated-icons/deactivate-ns.svg');
+  left: 0;
+  top: 0;
+}
+
+.deactivate-animation:hover {
+  width: 1200%;
+  background-image: url('./animated-icons/deactivate.svg');
+  animation-name: animated;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(11);
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+.deactivate-animation--active {
+  background-image: url('./animated-icons/deactivate-s.svg');
+}
+
+.export-animation {
+  width: 100%;
+  height: 100%;
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url('./animated-icons/export-ns.svg');
+  left: 0;
+  top: 0;
+}
+
+.export-animation:hover {
+  width: 1200%;
+  background-image: url('./animated-icons/export.svg');
+  animation-name: animated;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(11);
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+.import-animation {
+  width: 100%;
+  height: 100%;
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url('./animated-icons/import-ns.svg');
+  left: 0;
+  top: 0;
+}
+
+.import-animation:hover {
+  width: 1200%;
+  background-image: url('./animated-icons/import.svg');
+  animation-name: animated;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(11);
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+@keyframes animated {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-91.6666667%);
+  }
+}
+
+@keyframes animatedShort {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-83.3333333%);
+  }
+}

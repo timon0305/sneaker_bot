@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Captcha Harvester</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Material+Icons&amp;display=swap" rel="stylesheet" />
+    <style>
+      body {
+        background-color: #141b33;
+        margin: 0;
+        font-family: Montserrat, sans-serif;
+        overflow: hidden;
+      }
+
+      .non-highlight {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Opera and Firefox */
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10px;
+        padding-top: 10px;
+        -webkit-app-region: drag;
+        z-index: 10;
+      }
+
+      .navbar button {
+        height: 12.5px;
+        width: 12.5px;
+        border-radius: 999em;
+        outline: none;
+        border: none;
+        margin-right: 2.5px;
+        -webkit-app-region: no-drag;
+        transition: linear 0.3s;
+      }
+
+      .yellow {
+        background-color: #ffde46;
+      }
+
+      .yellow:hover {
+        background-color: #c9ae37;
+      }
+
+      .yellow-font {
+        color: #ffde46;
+      }
+
+      .green-font {
+        color: #00f88b;
+      }
+
+      .red {
+        background-color: #ff3c5d;
+      }
+
+      .red:hover {
+        background-color: #b8273f;
+      }
+
+      .title {
+        color: #fff;
+        padding-left: 25px;
+        font-weight: bold;
+        -webkit-app-region: drag;
+      }
+
+      .type-title {
+        display: flex;
+        flex-direction: row;
+        font-size: 13px;
+        font-weight: 500;
+        -webkit-app-region: drag;
+      }
+      .type-title span {
+        margin-right: 5px;
+      }
+
+      .main-window {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .center {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+      }
+
+      .branding {
+        width: 100px;
+        height: 100px;
+        opacity: 100%;
+        margin-left: 2.5px;
+        margin-bottom: -10px;
+        -webkit-user-select: none;
+        animation-timing-function: ease-linear;
+      }
+
+      .cap-text {
+        font-weight: bold;
+        color: #33465a;
+      }
+
+      .spinner-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        bottom: 0;
+        position: fixed;
+        z-index: 5;
+      }
+
+      .spinner {
+        height: 200px;
+        width: 200px;
+        border: 1.25px solid #82d5fd;
+        border-right: none;
+        border-bottom: none;
+        animation-name: spinner;
+        animation-duration: 5.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        border-radius: 999em;
+        -webkit-border-radius: 999em;
+        -moz-border-radius: 999em;
+        -ms-border-radius: 999em;
+        -o-border-radius: 999em;
+      }
+      .g-recaptcha-container {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+      }
+
+      /**
+      * Preloader animations
+      **/
+
+      @keyframes spinner {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(1800deg);
+        }
+      }
+      body {
+        background-color: #141b33;
+        margin: 0;
+        font-family: Montserrat, sans-serif;
+        overflow: hidden;
+      }
+
+      .non-highlight {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+        supported by Chrome, Opera and Firefox */
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10px;
+        padding-top: 10px;
+        -webkit-app-region: drag;
+        z-index: 10;
+      }
+
+      .navbar button {
+        height: 12.5px;
+        width: 12.5px;
+        border-radius: 999em;
+        outline: none;
+        border: none;
+        margin-right: 2.5px;
+        -webkit-app-region: no-drag;
+        transition: linear 0.3s;
+      }
+
+      .yellow {
+        background-color: #ffde46;
+      }
+
+      .yellow:hover {
+        background-color: #c9ae37;
+      }
+
+      .yellow-font {
+        color: #ffde46;
+      }
+
+      .red {
+        background-color: #ff3c5d;
+      }
+
+      .red:hover {
+        background-color: #b8273f;
+      }
+
+      .title {
+        color: #fff;
+        padding-left: 25px;
+        font-weight: bold;
+      }
+
+      .type-title {
+        display: flex;
+        flex-direction: row;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .type-title span {
+        margin-right: 5px;
+      }
+
+      .main-window {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .center {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+      }
+
+      .branding {
+        width: 100px;
+        height: 100px;
+        opacity: 100%;
+        margin-left: 2.5px;
+        margin-bottom: -10px;
+        -webkit-user-select: none;
+        animation-timing-function: ease-linear;
+      }
+
+      .bottom-bar {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin-bottom: 75px;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .bottom-bar button {
+        width: 32.5px;
+        background-color: transparent;
+        color: #6f7ead;
+        outline: none;
+        border: none;
+        transition: linear 0.3s;
+      }
+
+      .bottom-bar button:hover {
+        color: #435079;
+      }
+
+      .cap-text {
+        font-weight: bold;
+        color: #33465a;
+      }
+
+      .spinner-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        bottom: 0;
+        position: fixed;
+        z-index: 5;
+      }
+
+      .spinner {
+        height: 200px;
+        width: 200px;
+        border: 1.25px solid #82d5fd;
+        border-right: none;
+        border-bottom: none;
+        animation-name: spinner;
+        animation-duration: 5.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        border-radius: 999em;
+        -webkit-border-radius: 999em;
+        -moz-border-radius: 999em;
+        -ms-border-radius: 999em;
+        -o-border-radius: 999em;
+      }
+
+      /**
+      * preloader animations
+      **/
+
+      @keyframes spinner {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(1800deg);
+        }
+      }
+    </style>
+    <meta name="author" content="Kane#0001" />
+  </head>
+
+  <body class="non-highlight">
+    <div class="navbar">
+      <div class="actions">
+        <button class="yellow" id="minimize"></button>
+        <button class="red" id="close"></button>
+      </div>
+    </div>
+
+    <div class="title">
+      <span id="harvester-title"></span>
+      <div class="type-title">
+        <span class="green-font" id="harvester-subtitle">Shopify</span>
+        <span class="yellow-font" style="display: none;" id="harvester-subtype"> - Checkout</span>
+      </div>
+    </div>
+    <div class="g-recaptcha-container" id="g-recaptcha-container"></div>
+    <div class="main-window center">
+      <div id="spinner" class="spinner-center">
+        <div class="spinner"></div>
+      </div>
+
+      <div class="branding" id="nova-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" draggable="false" viewBox="0 0 71.77011 60.10523">
+          <defs>
+            <style>
+              .cls-1 {
+                fill: url(#linear-gradient);
+              }
+              .cls-2 {
+                fill: url(#linear-gradient-2);
+              }
+              .cls-3 {
+                fill: url(#linear-gradient-3);
+              }
+              .cls-4 {
+                fill: url(#linear-gradient-4);
+              }
+            </style>
+            <linearGradient
+              id="linear-gradient"
+              x1="10.23097"
+              y1="-2633.27043"
+              x2="49.94072"
+              y2="-2672.98018"
+              gradientTransform="matrix(1, 0, 0, -1, -1.63379, -2620.72931)"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0.54301" stop-color="#1d6179" />
+              <stop offset="0.62871" stop-color="#205f7d" />
+              <stop offset="0.70996" stop-color="#285788" />
+              <stop offset="0.78495" stop-color="#354c9a" />
+              <stop offset="1" stop-color="#244e81" />
+            </linearGradient>
+            <linearGradient
+              id="linear-gradient-2"
+              x1="4.32032"
+              y1="-2632.61063"
+              x2="52.04087"
+              y2="-2632.61063"
+              gradientTransform="matrix(1, 0, 0, -1, -1.63379, -2620.72931)"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0" stop-color="#628cc8" />
+              <stop offset="0.63441" stop-color="#34a4dd" />
+              <stop offset="1" stop-color="#2174b2" />
+            </linearGradient>
+            <linearGradient
+              id="linear-gradient-3"
+              x1="9.58203"
+              y1="-2668.68449"
+              x2="61.96874"
+              y2="-2616.29778"
+              gradientTransform="matrix(1, 0, 0, -1, -1.63379, -2620.72931)"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0.22043" stop-color="#3851a2" />
+              <stop offset="0.27062" stop-color="#3465af" />
+              <stop offset="0.38442" stop-color="#2c8dc8" />
+              <stop offset="0.48864" stop-color="#26a9da" />
+              <stop offset="0.57897" stop-color="#22bbe5" />
+              <stop offset="0.64516" stop-color="#21c1e9" />
+              <stop offset="0.67503" stop-color="#2ec2e3" />
+              <stop offset="0.74231" stop-color="#45c4da" />
+              <stop offset="0.81474" stop-color="#55c6d3" />
+              <stop offset="0.89525" stop-color="#5fc7ce" />
+              <stop offset="1" stop-color="#62c7cd" />
+            </linearGradient>
+            <linearGradient
+              id="linear-gradient-4"
+              x1="2.61546"
+              y1="-2643.98109"
+              x2="32.28244"
+              y2="-2683.3505"
+              gradientTransform="matrix(1, 0, 0, -1, -1.63379, -2620.72931)"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0" stop-color="#4ac5db" />
+              <stop offset="0.16129" stop-color="#2ec4ec" />
+              <stop offset="0.35484" stop-color="#2ea7df" />
+              <stop offset="0.49431" stop-color="#3a98d4" />
+              <stop offset="0.81631" stop-color="#507bbe" />
+              <stop offset="1" stop-color="#5970b6" />
+            </linearGradient>
+          </defs>
+          <g id="Layer_2" data-name="Layer 2">
+            <g id="Layer_1-2" data-name="Layer 1">
+              <g id="Layer_5" data-name="Layer 5">
+                <path
+                  class="cls-1"
+                  d="M56.863,31.05023a27.47727,27.47727,0,0,0-11.4086-20.87109,28.39129,28.39129,0,0,0-3.047-1.93374A28.80582,28.80582,0,0,0,31.97149,4.89407h-.00128a33.81473,33.81473,0,0,1-3.51348-.19415h-.00521a28.75508,28.75508,0,0,0-11.98091,2.5564l-.00522.002c-.11565.05289-.23063.10581-.34562.16q-.15577.07356-.30965.14767-.15486.07543-.30769.15153-.15392.07645-.30574.15485c-.09015.04641-.181.09347-.27121.14113-.05285.02742-.10577.05558-.15869.08491A28.28086,28.28086,0,0,0,4.31655,17.72483a27.27918,27.27918,0,0,0-1.63,2.91569q-.46546.96522-.85516,1.971a27.15937,27.15937,0,0,0-.20516,19.02166A28.41657,28.41657,0,0,0,28.45152,60.10522a29.2097,29.2097,0,0,0,6.50169-.72775A27.8826,27.8826,0,0,0,56.89635,32.3961Q56.89635,31.71891,56.863,31.05023ZM31.5214,46.793a12.98173,12.98173,0,0,1-6.05743-.13987q.06272-.42537.13651-.84539c.09408-.54086.19992-1.07144.30709-1.57974a26.66309,26.66309,0,0,0,.70294-3.84986c0-4.44248-2.06312-4.62733-2.06312-4.62733l-.38156-.02228-2.589.149-2.14738.12342c-2.99413.02162-3.7944-4.37451-3.7944-4.37451l-.002-.00516A13.41013,13.41013,0,0,1,28.78274,19.73375,13.47377,13.47377,0,0,1,42.04482,33.40933,13.587,13.587,0,0,1,31.5214,46.793Z"
+                />
+                <path
+                  class="cls-2"
+                  d="M50.40708,5.81838c-2.15534,1.89756-6.62571,5.83393-8.75429,7.709,0,0-18.8589,2.0037-18.98953,1.89462s-6.13776,8.34066-6.13776,8.34066l-13.839-3.12211A28.22506,28.22506,0,0,1,16.46539,7.25831l.00522-.002a26.6897,26.6897,0,0,1,11.98548-2.5564h.00064a33.81473,33.81473,0,0,0,3.51348.19415h.00128a4.74127,4.74127,0,0,0,3.75787-2.06978A6.73649,6.73649,0,0,1,40.9231.0151c2.54-.25418,1.86516,2.77591,1.74235,3.4729C42.22489,7.264,46.618,5.32053,47.6632,4.99062,49.31744,4.63438,50.20289,5.0585,50.40708,5.81838Z"
+                />
+                <path
+                  class="cls-3"
+                  d="M71.77011,7.89261c-.13072,2.71127-3.4083,4.16478-3.4083,4.16478a60.303,60.303,0,0,0-7.415,4.32294c-7.28954,4.366.46842,7.14256,1.35033,8.87383a2.26617,2.26617,0,0,1-.66955,2.85815,15.94969,15.94969,0,0,1-2.28024,1.42557c-4.69675,2.67228-9.44452,6.27449-11.75135,9.68684C43.66108,44.44823,37.13116,46.80249,31.5214,46.793c10.54986-2.40048,14.04127-15.68991,6.4205-23.27391-7.995-7.73426-20.82419-2.941-22.30881,8.10222l.00194.00516s.80028,4.39613,3.7944,4.37452c1.165-.06692,3.56783-.20515,4.7364-.27245l.38156.02228s2.06312.18485,2.06312,4.62733a26.66341,26.66341,0,0,1-.70294,3.84987c-.10717.50829-.213,1.03887-.30709,1.57973-1.83128-.31886-21.58931-3.7593-23.97427-4.17459A27.15554,27.15554,0,0,1,4.31655,17.72484c9.23665-6.26411,15.94843-4.92578,25.438-6.11611A64.48882,64.48882,0,0,0,39.69108,9.1602,102.54644,102.54644,0,0,0,54.65181,3.07733c3.73172-1.72156,6.47011-2.301,6.44463.60145.07382,1.40464-2.37611,2.58059-2.37611,2.58059-4.517,2.74455-3.65941,5.13772-2.54285,5.47829,2.59994.49069,7.15411-3.6844,8.28342-4.69434.02488-.00848,2.2624-1.73124,3.87934-1.73124C71.67205,5.31209,71.77011,7.89261,71.77011,7.89261Z"
+                />
+                <path
+                  class="cls-4"
+                  d="M34.95321,59.37747C12.6541,64.2742-6.03775,43.5141,1.83137,22.61148c.05228.37965.81077,5.51856,3.97668,6.96557a6.41228,6.41228,0,0,0,5.55307,0,3.24855,3.24855,0,0,1,4.272,2.04424l.002.00516s.80027,4.39613,3.7944,4.37451c1.165-.06691,3.56783-.20515,4.7364-.27244l.38156.02228a1.36676,1.36676,0,0,1,.55878.22772c.84944.51986,1.566,2.07355,1.49852,4.58544-.42522,3.73857-3.03036,10.46746.37036,13.16313,0,0,.79508,1.1896,3.45728,1.12429,0,0,3.21755-.39459,3.36456,2.15334A2.54806,2.54806,0,0,0,34.95321,59.37747Z"
+                />
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <button class="refresh" id="harvester-reload">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sync-alt" class="svg-inline--fa fa-sync-alt fa-w-16" role="img" viewBox="0 0 512 512">
+          <path
+            fill="currentColor"
+            d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z"
+          />
+        </svg>
+      </button>
+    </div>
+    <script>
+      window.$ = window.jQuery = require('jquery');
+    </script>
+    <script>
+      const { remote, ipcRenderer } = require('electron');
+
+      const closeButton = document.getElementById('close');
+      const minimizeButton = document.getElementById('minimize');
+      const reloadButton = document.getElementById('harvester-reload');
+      const spinner = document.getElementById('spinner');
+      const novaLogo = document.getElementById('nova-logo');
+
+      const pause = (time) =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, time);
+        });
+      const genPosition = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+      // Values used for calling a captcha request
+      let taskID = '';
+      let harvesterID = '';
+      let specialSession = '';
+      let sitekey = '';
+      let captchaToken = '';
+      let datadomeSolver = false;
+
+      closeButton.addEventListener('click', () => {
+        // ipcRenderer.removeListener('harvester-set-values', setHarvesterValues);
+        // ipcRenderer.removeListener('harvester-load-captcha', loadCaptcha);
+        // ipcRenderer.removeListener('harvester-stop-captcha', stopCaptcha);
+        remote.getCurrentWindow().hide();
+      });
+      minimizeButton.addEventListener('click', () => {
+        remote.getCurrentWindow().minimize();
+      });
+      reloadButton.addEventListener('click', () => {
+        if (window.location.protocol !== 'file:' && document.getElementById('g-recaptcha-container').childElementCount !== 0) {
+          grecaptcha.reset();
+          removeNodes();
+          window.___grecaptcha_cfg.count = 0;
+          window.___grecaptcha_cfg.clients = {};
+          delete window.recaptcha;
+          loadCaptcha();
+        }
+      });
+      ipcRenderer.on('harvester-set-values', setHarvesterValues);
+      ipcRenderer.on('harvester-load-captcha', loadCaptcha);
+      ipcRenderer.on('harvester-stop-captcha', stopCaptcha);
+      function movement(target, type, x, y, screenX, screenY, detail) {
+        const event = target.ownerDocument.createEvent('MouseEvents');
+        var options = options || {};
+        const opts = {
+          type,
+          canBubble: true,
+          cancelable: true,
+          view: window,
+          detail: detail ? 1 : 0,
+          screenY,
+          clientX: x,
+          clientY: y,
+          button: 0,
+          relatedTarget: null,
+          ctrlKey: false,
+          altKey: false,
+          shiftKey: false,
+          metaKey: false,
+        };
+        for (const key in options) {
+          if (options.hasOwnProperty(key)) {
+            opts[key] = options[key];
+          }
+        }
+        event.initMouseEvent(
+          opts.type,
+          opts.canBubble,
+          opts.cancelable,
+          opts.view,
+          opts.detail,
+          opts.screenX,
+          opts.screenY,
+          opts.clientX,
+          opts.clientY,
+          opts.ctrlKey,
+          opts.altKey,
+          opts.shiftKey,
+          opts.metaKey,
+          opts.button,
+          opts.relatedTarget,
+        );
+        target.dispatchEvent(event);
+      }
+      function protect(screenX, screenY) {
+        const frame = document.querySelectorAll('[role="presentation"]')[0];
+        const frameContent = frame.contentDocument || frame.contentWindow.document;
+        const mainDimensions = frameContent.getElementsByClassName('rc-anchor rc-anchor-normal rc-anchor-light')[0].getBoundingClientRect();
+        const horiDimension = genPosition(0, mainDimensions.width);
+        const vertDimension = genPosition(0, mainDimensions.height);
+        const contentDimension = frameContent.getElementsByClassName('rc-anchor-center-item rc-anchor-checkbox-holder')[0].getBoundingClientRect();
+        const horiLabel = genPosition(0, contentDimension.width);
+        const vertLabel = genPosition(0, contentDimension.height);
+        const markPosition = frameContent.getElementsByClassName('recaptcha-checkbox-checkmark')[0].getBoundingClientRect();
+        const horiMark = genPosition(0, markPosition.width);
+        const vertMark = genPosition(0, markPosition.height);
+        const area = frameContent.getElementsByClassName('rc-anchor rc-anchor-normal rc-anchor-light')[0];
+        const holder = frameContent.getElementsByClassName('rc-anchor-center-item rc-anchor-checkbox-holder')[0];
+        const box = frameContent.getElementsByClassName('recaptcha-checkbox-checkmark')[0];
+        movement(area, 'mousemove', horiDimension - 8, vertDimension + 5, screenX - 5, screenY + 3);
+        movement(area, 'mousemove', horiDimension - 3, vertDimension + 3, screenX - 3, screenY + 3);
+        movement(area, 'mousemove', horiDimension - 2, vertDimension + 2, screenX - 2, screenY + 3);
+        movement(area, 'mousemove', horiDimension - 2, vertDimension + 1, screenX - 2, screenY + 2);
+        movement(area, 'mousemove', horiDimension - 2, vertDimension + 1, screenX - 1, screenY + 2);
+        movement(area, 'mousemove', horiDimension - 2, vertDimension + 1, screenX - 1, screenY + 1);
+        movement(area, 'mousemove', horiDimension - 1, vertDimension + 1, screenX - 1, screenY + 1);
+        movement(area, 'mousemove', horiDimension - 1, vertDimension + 1, screenX - 1, screenY);
+        movement(area, 'mousemove', horiDimension - 1, vertDimension, screenX - 1, screenY);
+        movement(area, 'mousemove', horiDimension, vertDimension, screenX, screenY);
+        movement(holder, 'mouseover', horiLabel, vertLabel, screenX, screenY);
+        movement(box, 'mousedown', horiMark, vertMark, screenX, screenY, true);
+        movement(box, 'mouseup', horiMark, vertMark, screenX, screenY, true);
+        pause(150).then(() => {
+          movement(box, 'click', horiMark, vertMark, screenX, screenY, true);
+        });
+      }
+      function submitEvent() {
+        const bounds = ipcRenderer.sendSync('harvester-captcha-position', harvesterID);
+        const x = bounds.x + genPosition(200, 300);
+        const y = bounds.y + genPosition(300, 430);
+        protect(x, y);
+      }
+      function removeNodes() {
+        const captchaElement = document.querySelectorAll('.g-recaptcha-container');
+        const scripts = document.querySelectorAll('script');
+        scripts.forEach((script) => {
+          if (script.src.match(/recaptcha||google||gstatic/)) {
+            script.remove();
+          }
+        });
+        captchaElement.forEach((node) => {
+          node.remove(node.parentElement);
+          node.removeChild(node.firstChild);
+        });
+        $('<div/>', { id: 'g-recaptcha-container', class: 'g-recaptcha-container' }).appendTo(document.body);
+      }
+      function setHarvesterValues(e, values) {
+        const harvesterName = document.getElementById('harvester-title');
+        if (values.type === 'shopifyCheckout') {
+          document.getElementById('harvester-subtype').style.display = 'block';
+        }
+        if (values.loadingCaptcha) {
+          taskID = values.taskID;
+          sitekey = values.sitekey;
+          specialSession = values.specialSession;
+          if (values.datadomeSolver) {
+            datadomeSolver = true;
+          }
+        }
+        harvesterID = values.harvesterID;
+        harvesterName.innerHTML = values.name;
+      }
+      function stopCaptcha() {
+        spinner.style.display = 'flex';
+        novaLogo.style.display = 'block';
+        if (grecaptcha) {
+          grecaptcha.reset();
+          removeNodes();
+          window.___grecaptcha_cfg.count = 0;
+          window.___grecaptcha_cfg.clients = {};
+          delete window.recaptcha;
+        }
+        ipcRenderer.send('harvester-unblock', harvesterID);
+      }
+      function captchaSuccess() {
+        spinner.style.display = 'flex';
+        novaLogo.style.display = 'block';
+        const captchaToken = document.getElementById('g-recaptcha-response').value;
+        ipcRenderer.send('harvester-send-token', {
+          token: captchaToken,
+          taskID: taskID,
+          site: window.location.href,
+          harvesterID,
+          datadomeSolver: datadomeSolver,
+        });
+        grecaptcha.reset();
+        removeNodes();
+        window.___grecaptcha_cfg.count = 0;
+        window.___grecaptcha_cfg.clients = {};
+        delete window.recaptcha;
+        datadomeSolver = false;
+      }
+      function captchaCallback() {
+        grecaptcha.render('g-recaptcha-container', {
+          sitekey: sitekey,
+          callback: 'captchaSuccess',
+          s: specialSession,
+        });
+      }
+      function loadCaptcha(e, captchaRequest) {
+        spinner.style.display = 'none';
+        novaLogo.style.display = 'none';
+        $.getScript('https://www.google.com/recaptcha/api.js?onload=captchaCallback&amp;render=explicit&amp;hl=en');
+        pause(300).then(() => {
+          submitEvent();
+        });
+      }
+      window.captchaSuccess = captchaSuccess;
+      window.captchaCallback = captchaCallback;
+    </script>
+  </body>
+</html>

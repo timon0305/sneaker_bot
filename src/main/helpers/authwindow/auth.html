@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Material+Icons&display=swap');
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat';
+      }
+
+      .wrapper {
+        width: 700px;
+        height: 400px;
+        background: #141b33;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .background {
+        width: 700px;
+        height: 400px;
+        background-image: url('./splashBackground.png');
+        background-size: 100%, 100%;
+        position: absolute;
+        background-position-y: -50px;
+      }
+
+      .foreground {
+        position: absolute;
+        width: 700px;
+        height: 400px;
+        background-image: url('./splashForeground.png');
+        background-size: 100%, 100%;
+        background-position-y: -30px;
+      }
+
+      .dragbar {
+        -webkit-app-region: drag;
+        position: absolute;
+        width: 100%;
+        align-items: flex-end;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 8px;
+        z-index: 3;
+      }
+
+      .window-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        -webkit-app-region: no-drag;
+      }
+
+      .window-buttons:hover svg {
+        visibility: visible;
+        display: block;
+      }
+
+      .window-buttons svg {
+        visibility: hidden;
+        width: 12px;
+        height: 12px;
+        display: block;
+      }
+
+      .unfocused .window-button {
+        background-color: #ffffff0f !important;
+      }
+
+      .window-button {
+        height: 12px;
+        width: 12px;
+        margin-left: 6px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        transition: 0.1s ease filter;
+      }
+
+      .window-button:active {
+        filter: brightness(70%);
+      }
+
+      .logo {
+        position: relative;
+        left: 45%;
+        top: 50px;
+        height: 72px;
+        z-index: 3;
+        animation-name: floating;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+      }
+
+      .window-button--red {
+        background: #ff3c5d;
+      }
+
+      .window-button--yellow {
+        background: #ffde46;
+      }
+
+      .window-button--green {
+        background: #00f88b;
+      }
+
+      .sky-container {
+        transform: rotateZ(135deg);
+        position: relative;
+        top: 150px;
+      }
+
+      .star {
+        position: absolute;
+        height: 2px;
+        background: linear-gradient(-45deg, #5f91ff, rgba(0, 0, 255, 0));
+        filter: drop-shadow(0 0 6px #699bff);
+        animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+      }
+
+      .star::before,
+      .star::after {
+        position: absolute;
+        content: '';
+        top: calc(50% - 1px);
+        right: 0;
+        height: 2px;
+        background: linear-gradient(-45deg, rgba(0, 0, 255, 0), #5f91ff, rgba(0, 0, 255, 0));
+        border-radius: 100%;
+        transform: translateX(50%) rotateZ(45deg);
+        animation: shining 3000ms ease-in-out infinite;
+      }
+
+      .star::after {
+        transform: translateX(50%) rotateZ(-45deg);
+      }
+
+      .star:nth-child(1) {
+        top: calc(50% - 200px);
+        left: calc(50% - 300px);
+        animation-delay: 650ms;
+      }
+
+      .star:nth-child(1)::before,
+      .star:nth-child(1)::after {
+        animation-delay: 650ms;
+      }
+
+      .star:nth-child(2) {
+        top: calc(50% - -50px);
+        left: calc(50% - 190px);
+        animation-delay: 150ms;
+      }
+
+      .star:nth-child(2)::before,
+      .star:nth-child(2)::after {
+        animation-delay: 150ms;
+      }
+
+      .star:nth-child(3) {
+        top: calc(50% - -90px);
+        left: calc(50% - 200px);
+        animation-delay: 1600ms;
+      }
+
+      .star:nth-child(3)::before,
+      .star:nth-child(3)::after {
+        animation-delay: 1600ms;
+      }
+
+      .star:nth-child(4) {
+        top: calc(50% - 50px);
+        left: calc(50% - 250px);
+        animation-delay: 4700ms;
+      }
+
+      .star:nth-child(4)::before,
+      .star:nth-child(4)::after {
+        animation-delay: 4700ms;
+      }
+
+      .star:nth-child(5) {
+        top: calc(50% - -190px);
+        left: calc(50% - 200px);
+        animation-delay: 2100ms;
+      }
+
+      .star:nth-child(5)::before,
+      .star:nth-child(5)::after {
+        animation-delay: 2100ms;
+      }
+
+      /* Animations */
+      @keyframes tail {
+        0% {
+          width: 0;
+        }
+
+        30% {
+          width: 100px;
+        }
+
+        100% {
+          width: 0;
+        }
+      }
+
+      @keyframes shining {
+        0% {
+          width: 0;
+        }
+        50% {
+          width: 30px;
+        }
+        100% {
+          width: 0;
+        }
+      }
+
+      @keyframes shooting {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(320px);
+        }
+      }
+
+      @keyframes floating {
+        from {
+          transform: translate(0, 0px);
+        }
+        65% {
+          transform: translate(0, 5px);
+        }
+        to {
+          transform: translate(0, -0px);
+        }
+      }
+
+      .form__wrapper {
+        position: relative;
+        left: calc(50% - 190px);
+        top: calc(50% - 60px);
+        width: 360px;
+        height: 128px;
+        display: flex;
+        flex-direction: column;
+        z-index: 3;
+        background: #202b50;
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .overlay {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #141b33ab;
+        z-index: 2;
+        top: -76px;
+        left: 0;
+      }
+
+      .input__text {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        font-size: 13px;
+        color: #fff;
+        letter-spacing: 1.1px;
+        font-weight: bold;
+      }
+
+      .input {
+        margin-top: 8px;
+        border-radius: 4px;
+        font-size: 14px;
+        padding: 10px 11px 10px 11px;
+        letter-spacing: 0.7px;
+        background-color: #1b2545;
+        border: none;
+        outline: none;
+        border-bottom: 4px solid #4f5b7a;
+        color: #6f7ead;
+        transition: 0.2s ease;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .input::placeholder {
+        color: #444e69b6;
+      }
+
+      .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        padding: 8px 16px 8px 16px;
+        border-radius: 8px;
+        margin-right: 0px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.2s ease;
+        font-weight: bold;
+        margin-bottom: 8px;
+        background: rgba(0, 248, 139, 0.2);
+        color: #00f88b;
+        height: 40px;
+        border: none;
+        outline: none;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        filter: brightness(80%);
+      }
+
+      .error__text {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ff3c5d;
+        font-weight: bold;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="dragbar">
+        <div></div>
+        <div class="window-buttons" id="window-buttons">
+          <div id="min" class="window-button window-button--yellow">
+            <svg aria-hidden="false" width="12" height="12" viewBox="0 0 12 12">
+              <rect fill="#975500" width="8" height="2" x="2" y="5" fillRule="evenodd" />
+            </svg>
+          </div>
+          <div id="close" class="window-button window-button--red">
+            <svg aria-hidden="false" width="12" height="12" viewBox="0 0 12 12">
+              <path stroke="#4c0000" fill="none" d="M8.5,3.5 L6,6 L3.5,3.5 L6,6 L3.5,8.5 L6,6 L8.5,8.5 L6,6 L8.5,3.5 Z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="background">
+        <img src="./logo.png" alt="" class="logo" />
+        <div class="sky-container">
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+        </div>
+        <div class="overlay"></div>
+      </div>
+      <div class="foreground">
+        <div class="form__wrapper">
+          <span class="input__text">Welcome</span>
+          <input id="keyField" type="text" class="input" placeholder="XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX" />
+          <button id="loginButton" class="button green" onclick="sendKey()">
+            Login
+          </button>
+          <div id="error" class="error__text"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const { remote, ipcRenderer } = require('electron');
+      function sendKey() {
+        const key = document.getElementById('keyField').value.replace(/\s/g, '');
+        ipcRenderer.send('login-key', key);
+      }
+
+      ipcRenderer.on('loginMessage', (e, message) => {
+        document.getElementById('error').innerHTML = message;
+      });
+
+      document.getElementById('close').addEventListener('click', () => {
+        remote.getCurrentWindow().close();
+      });
+
+      document.getElementById('min').addEventListener('click', () => {
+        remote.getCurrentWindow().minimize();
+      });
+
+      window.addEventListener('focus', () => {
+        document.getElementById('window-buttons').classList.remove('unfocused');
+      });
+
+      window.addEventListener('blur', () => {
+        document.getElementById('window-buttons').classList.add('unfocused');
+      });
+    </script>
+  </body>
+</html>

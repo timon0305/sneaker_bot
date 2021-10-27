@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Captcha Harvester</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Material+Icons&amp;display=swap" rel="stylesheet" />
+    <style>
+      body {
+        background-color: #141b33;
+        margin: 0;
+        font-family: Montserrat, sans-serif;
+        overflow: hidden;
+      }
+
+      .non-highlight {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Opera and Firefox */
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10px;
+        padding-top: 10px;
+        -webkit-app-region: drag;
+        z-index: 10;
+      }
+
+      .navbar button {
+        height: 12.5px;
+        width: 12.5px;
+        border-radius: 999em;
+        outline: none;
+        border: none;
+        margin-right: 2.5px;
+        -webkit-app-region: no-drag;
+        transition: linear 0.3s;
+      }
+
+      .yellow {
+        background-color: #ffde46;
+      }
+
+      .yellow:hover {
+        background-color: #c9ae37;
+      }
+
+      .yellow-font {
+        color: #ffde46;
+      }
+
+      .green-font {
+        color: #64b575;
+      }
+      .brown-font {
+        color: #744f3a;
+      }
+
+      .red {
+        background-color: #ff3c5d;
+      }
+
+      .red:hover {
+        background-color: #b8273f;
+      }
+
+      .title {
+        color: #fff;
+        padding-left: 25px;
+        font-weight: bold;
+        -webkit-app-region: drag;
+      }
+
+      .type-title {
+        display: flex;
+        flex-direction: row;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .type-title span {
+        margin-right: 5px;
+      }
+
+      .main-window {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .center {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+      }
+
+      .branding {
+        width: 175px;
+        height: 175px;
+        opacity: 25%;
+        margin-left: 22.5px;
+        margin-bottom: -10px;
+        -webkit-user-select: none;
+      }
+
+      .cap-text {
+        font-weight: bold;
+        color: #33465a;
+      }
+    </style>
+  </head>
+
+  <body class="non-highlight">
+    <div class="navbar">
+      <div class="actions">
+        <button class="yellow"></button>
+        <button class="red"></button>
+      </div>
+    </div>
+
+    <div class="title">
+      <span>Main Google Account</span>
+      <div class="type-title">
+        <span class="brown-font">Yeeezy</span>
+      </div>
+    </div>
+
+    <div class="main-window center">
+      <div class="branding">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" draggable="false" viewBox="0 0 71.77011 60.10523">
+          <defs>
+            <style>
+              .cls-1 {
+                fill: url(#linear-gradient);
+              }
+              .cls-2 {
+                fill: url(#linear-gradient-2);
+              }
+              .cls-3 {
+                fill: url(#linear-gradient-3);
+              }
+              .cls-4 {
+                fill: url(#linear-gradient-4);
+              }
+            </style>
+            <linearGradient
+              id="linear-gradient"
+              x1="10.23097"
+              y1="-2633.27043"
+              x2="49.94072"
+              y2="-2672.98018"
+              gradientTransform="matrix(1, 0, 0, -1, -1.63379, -2620.72931)"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0.54301" stop-color="#1d6179" />
+              <stop offset="0.62871" stop-color="#205f7d" />
+              <stop offset="0.70996" stop-color="#285788" />
+              <stop offset="0.78495" stop-color="#354c9a" />
+              <stop offset="1" stop-color="#244e81" />
+            </linearGradient>
+            <linearGradient
+              id="linear-gradient-2"
+              x1="4.32032"
+              y1="-2632.61063"
+              x2="52.04087"
+              y2="-2632.61063"
+              gradientTransform="matrix(1, 0, 0, -1, -1.63379, -2620.72931)"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0" stop-color="#628cc8" />
+              <stop offset="0.63441" stop-color="#34a4dd" />
+              <stop offset="1" stop-color="#2174b2" />
+            </linearGradient>
+            <linearGradient
+              id="linear-gradient-3"
+              x1="9.58203"
+              y1="-2668.68449"
+              x2="61.96874"
+              y2="-2616.29778"
+              gradientTransform="matrix(1, 0, 0, -1, -1.63379, -2620.72931)"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0.22043" stop-color="#3851a2" />
+              <stop offset="0.27062" stop-color="#3465af" />
+              <stop offset="0.38442" stop-color="#2c8dc8" />
+              <stop offset="0.48864" stop-color="#26a9da" />
+              <stop offset="0.57897" stop-color="#22bbe5" />
+              <stop offset="0.64516" stop-color="#21c1e9" />
+              <stop offset="0.67503" stop-color="#2ec2e3" />
+              <stop offset="0.74231" stop-color="#45c4da" />
+              <stop offset="0.81474" stop-color="#55c6d3" />
+              <stop offset="0.89525" stop-color="#5fc7ce" />
+              <stop offset="1" stop-color="#62c7cd" />
+            </linearGradient>
+            <linearGradient
+              id="linear-gradient-4"
+              x1="2.61546"
+              y1="-2643.98109"
+              x2="32.28244"
+              y2="-2683.3505"
+              gradientTransform="matrix(1, 0, 0, -1, -1.63379, -2620.72931)"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0" stop-color="#4ac5db" />
+              <stop offset="0.16129" stop-color="#2ec4ec" />
+              <stop offset="0.35484" stop-color="#2ea7df" />
+              <stop offset="0.49431" stop-color="#3a98d4" />
+              <stop offset="0.81631" stop-color="#507bbe" />
+              <stop offset="1" stop-color="#5970b6" />
+            </linearGradient>
+          </defs>
+          <g id="Layer_2" data-name="Layer 2">
+            <g id="Layer_1-2" data-name="Layer 1">
+              <g id="Layer_5" data-name="Layer 5">
+                <path
+                  class="cls-1"
+                  d="M56.863,31.05023a27.47727,27.47727,0,0,0-11.4086-20.87109,28.39129,28.39129,0,0,0-3.047-1.93374A28.80582,28.80582,0,0,0,31.97149,4.89407h-.00128a33.81473,33.81473,0,0,1-3.51348-.19415h-.00521a28.75508,28.75508,0,0,0-11.98091,2.5564l-.00522.002c-.11565.05289-.23063.10581-.34562.16q-.15577.07356-.30965.14767-.15486.07543-.30769.15153-.15392.07645-.30574.15485c-.09015.04641-.181.09347-.27121.14113-.05285.02742-.10577.05558-.15869.08491A28.28086,28.28086,0,0,0,4.31655,17.72483a27.27918,27.27918,0,0,0-1.63,2.91569q-.46546.96522-.85516,1.971a27.15937,27.15937,0,0,0-.20516,19.02166A28.41657,28.41657,0,0,0,28.45152,60.10522a29.2097,29.2097,0,0,0,6.50169-.72775A27.8826,27.8826,0,0,0,56.89635,32.3961Q56.89635,31.71891,56.863,31.05023ZM31.5214,46.793a12.98173,12.98173,0,0,1-6.05743-.13987q.06272-.42537.13651-.84539c.09408-.54086.19992-1.07144.30709-1.57974a26.66309,26.66309,0,0,0,.70294-3.84986c0-4.44248-2.06312-4.62733-2.06312-4.62733l-.38156-.02228-2.589.149-2.14738.12342c-2.99413.02162-3.7944-4.37451-3.7944-4.37451l-.002-.00516A13.41013,13.41013,0,0,1,28.78274,19.73375,13.47377,13.47377,0,0,1,42.04482,33.40933,13.587,13.587,0,0,1,31.5214,46.793Z"
+                />
+                <path
+                  class="cls-2"
+                  d="M50.40708,5.81838c-2.15534,1.89756-6.62571,5.83393-8.75429,7.709,0,0-18.8589,2.0037-18.98953,1.89462s-6.13776,8.34066-6.13776,8.34066l-13.839-3.12211A28.22506,28.22506,0,0,1,16.46539,7.25831l.00522-.002a26.6897,26.6897,0,0,1,11.98548-2.5564h.00064a33.81473,33.81473,0,0,0,3.51348.19415h.00128a4.74127,4.74127,0,0,0,3.75787-2.06978A6.73649,6.73649,0,0,1,40.9231.0151c2.54-.25418,1.86516,2.77591,1.74235,3.4729C42.22489,7.264,46.618,5.32053,47.6632,4.99062,49.31744,4.63438,50.20289,5.0585,50.40708,5.81838Z"
+                />
+                <path
+                  class="cls-3"
+                  d="M71.77011,7.89261c-.13072,2.71127-3.4083,4.16478-3.4083,4.16478a60.303,60.303,0,0,0-7.415,4.32294c-7.28954,4.366.46842,7.14256,1.35033,8.87383a2.26617,2.26617,0,0,1-.66955,2.85815,15.94969,15.94969,0,0,1-2.28024,1.42557c-4.69675,2.67228-9.44452,6.27449-11.75135,9.68684C43.66108,44.44823,37.13116,46.80249,31.5214,46.793c10.54986-2.40048,14.04127-15.68991,6.4205-23.27391-7.995-7.73426-20.82419-2.941-22.30881,8.10222l.00194.00516s.80028,4.39613,3.7944,4.37452c1.165-.06692,3.56783-.20515,4.7364-.27245l.38156.02228s2.06312.18485,2.06312,4.62733a26.66341,26.66341,0,0,1-.70294,3.84987c-.10717.50829-.213,1.03887-.30709,1.57973-1.83128-.31886-21.58931-3.7593-23.97427-4.17459A27.15554,27.15554,0,0,1,4.31655,17.72484c9.23665-6.26411,15.94843-4.92578,25.438-6.11611A64.48882,64.48882,0,0,0,39.69108,9.1602,102.54644,102.54644,0,0,0,54.65181,3.07733c3.73172-1.72156,6.47011-2.301,6.44463.60145.07382,1.40464-2.37611,2.58059-2.37611,2.58059-4.517,2.74455-3.65941,5.13772-2.54285,5.47829,2.59994.49069,7.15411-3.6844,8.28342-4.69434.02488-.00848,2.2624-1.73124,3.87934-1.73124C71.67205,5.31209,71.77011,7.89261,71.77011,7.89261Z"
+                />
+                <path
+                  class="cls-4"
+                  d="M34.95321,59.37747C12.6541,64.2742-6.03775,43.5141,1.83137,22.61148c.05228.37965.81077,5.51856,3.97668,6.96557a6.41228,6.41228,0,0,0,5.55307,0,3.24855,3.24855,0,0,1,4.272,2.04424l.002.00516s.80027,4.39613,3.7944,4.37451c1.165-.06691,3.56783-.20515,4.7364-.27244l.38156.02228a1.36676,1.36676,0,0,1,.55878.22772c.84944.51986,1.566,2.07355,1.49852,4.58544-.42522,3.73857-3.03036,10.46746.37036,13.16313,0,0,.79508,1.1896,3.45728,1.12429,0,0,3.21755-.39459,3.36456,2.15334A2.54806,2.54806,0,0,0,34.95321,59.37747Z"
+                />
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="cap-text">
+        <span>Waiting For Captcha</span>
+      </div>
+    </div>
+  </body>
+</html>

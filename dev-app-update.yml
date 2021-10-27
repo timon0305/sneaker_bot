@@ -1,0 +1,4 @@
+version: 0.9.34
+provider: s3
+bucket: gad0h20ehijdf
+region: us-west-1

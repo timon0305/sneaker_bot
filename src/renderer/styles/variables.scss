@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+@font-face {
+  font-family: kredit;
+  src: url('https://pattern.kivan-works.com/fonts/kredit_front.ttf');
+}
+$inputtt: #373742;
+$bgMain: #111118;
+$bgLight: lighten($bgMain, 5%);
+$bgLightest: lighten($bgMain, 2%);
+$bgLightH: lighten($bgMain, 10%);
+$font-family: 'Poppins', sans-serif;
+$card-font: 'kredit';
+$accent: #59bce4;
+$neutral: #6f7ead;
+$neutralBg: #1b2545;
+$placeholder: #4f5b7a;
+$unfocusedMenu: #ffffff0f;
+$blue: #82d5fd;
+$red: #ff3c5d;
+$green: #00f88b;
+$yellow: #ffde46;
+
+$blueGradient: linear-gradient(135deg, #13f1fc 0%, #0470dc 100%); // Amex
+$orangeGradient: linear-gradient(135deg, #f2d50f 0%, #da0641 100%); // Mastercarad
+$lightOrangeGradient: linear-gradient(135deg, #fad961 0%, #f76b1c 100%); // Discover
+$purpleGradient: linear-gradient(135deg, #ff57b9 0%, #a704fd 100%); // Visa
+$darkBlueGradient: linear-gradient(135deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 61, 255, 1) 100%); // Diners
+$jcbGradient: linear-gradient(135deg, rgba(0, 149, 64, 1) 0%, rgba(0, 105, 179, 1) 51%, rgba(226, 6, 19, 1) 100%); // JCB
+
+@mixin flexColumnCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexColumnTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin flexColumnSpaceBetween {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flexRowCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexRowSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bgMain;
+}
+
+::-webkit-scrollbar-thumb {
+  background: lighten($bgMain, 10%);
+  border-radius: 20px;
+}

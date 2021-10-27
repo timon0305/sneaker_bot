@@ -1,0 +1,85 @@
+@import './variables';
+
+.harvester__table {
+  margin-top: 16px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: calc(100vh - 276px);
+  max-height: calc(100vh - 276px);
+  overflow: auto;
+}
+
+.harvester__table--hidden {
+  display: none;
+}
+
+.harvester__message {
+  height: calc(100vh - 276px);
+  max-height: calc(100vh - 276px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.harvester__message--hidden {
+  display: none;
+}
+
+.harvester__row {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.harvester__box {
+  width: 32%;
+  display: flex;
+  flex-direction: column;
+  background: $bgLightest;
+  border-radius: 8px;
+  margin-right: 12px;
+  margin-top: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+  height: 208px;
+}
+
+.harvester__top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.harvester__title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.harvester__description {
+  margin-top: 8px;
+
+  .green {
+    color: $green;
+  }
+
+  .yellow {
+    color: $yellow;
+  }
+
+  .red {
+    color: $red;
+  }
+
+  .blue {
+    color: $blue;
+  }
+}
+
+.harvester__buttons {
+  margin-top: 8px;
+  width: 100%;
+}

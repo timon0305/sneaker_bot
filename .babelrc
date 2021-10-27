@@ -1,0 +1,19 @@
+{
+  "ignore": ["./src/renderer/**/*"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "esmodules": true
+        }
+      },
+      "@babel/typescript"
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-transform-typescript",
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread"
+  ]
+}

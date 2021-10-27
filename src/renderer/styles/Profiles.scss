@@ -1,0 +1,45 @@
+@import './variables';
+
+.profiles__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .pp-table__container {
+    .table {
+      .table__image {
+        height: 20px;
+      }
+    }
+  }
+}
+
+.selected-profiles__wrapper {
+  min-height: calc(100vh - 492px);
+  max-height: calc(100vh - 492px);
+  margin-top: 8px;
+  margin-bottom: 16px;
+  overflow: auto;
+}
+
+.selected__profile {
+  background: $bgMain;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 34px;
+  padding: 4px 24px 4px 24px;
+  border-radius: 21px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: $neutral;
+  margin-top: 8px;
+  margin-right: 8px;
+
+  .remove-icon {
+    height: 14px;
+    width: 14px;
+    cursor: pointer;
+  }
+}
